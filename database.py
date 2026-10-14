@@ -52,7 +52,7 @@ def scan_database_for_matches(suspicious_text: str, threshold: float = 0.75):
     )
     matches = []
     if results and results['distances']:
-        for i, sent in enumerate(results[sentences]):
+        for i, sent in enumerate(sentences):
             distances = results['distances'][i]
             metadatas = results['metadatas'][i]
 
@@ -64,7 +64,7 @@ def scan_database_for_matches(suspicious_text: str, threshold: float = 0.75):
                     matches.append({
                         "suspicious_sentence": sentences[i],
                         "matched_sentence": metadatas[0]['source_sentence'],
-                        "similarity": similarity
+                        "similarity": round(similarity * 100,2)
                     })
     return matches
 
