@@ -27,7 +27,9 @@ def add_document(document: DocumentInput):
 
     cleaned = preprocess_text(raw_text)
 
-    database.add_document_to_database(raw_text, cleaned)
+    database.save_document_to_database(raw_text, cleaned)
+
+    return { "message": "Document added successfully", "text_length": len(raw_text) }  
 
 #Function 2: Checking for plagiarism
 @app.post("/check_plagiarism")
@@ -37,7 +39,6 @@ def check_plagiarism(document: DocumentInput):
 
     suspicious_cleaned_text = preprocess_text(raw_text)
     matches = database.scan_database_for_matches(suspicious_cleaned_text)
-
 
     # return the matches to the user
     return { "matches": matches, "text_length": len(raw_text) }

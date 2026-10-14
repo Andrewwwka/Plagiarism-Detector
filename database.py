@@ -1,5 +1,5 @@
 import numpy as py
-from sentence_transformers import SentenceTransformer
+from sentence_transformers import SentenceTransformer, util
 
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
@@ -23,14 +23,15 @@ def scan_database_for_matches(suspicious_text: str):
     
     matches = []
     for document in DOCUMENT_DATABASE:
-        stored_vector = document["embedding"]
+        stored_vector = document["vector"]
         similarity_tensor = util.cos_sim(suspicious_vector, stored_vector)
         similarity = similarity_tensor.item()  # Convert tensor to a float value
+        
         if similarity > 0.8:  # Example threshold for plagiarism
             matches.append({
                 "raw": document["raw"],
-                "cleaned": document["cleaned"],
-                "similarity": round(imilarity * 100, 2)
+                "cleaned": document["text"],
+                "similarity": round(similarity * 100, 2)
             })
     
     return matches
