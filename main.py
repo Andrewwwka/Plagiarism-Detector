@@ -24,12 +24,12 @@ def add_document(document: DocumentInput):
     # For demonstration, we will just return a success message
     return {"message": "Document added successfully", "text_length": len(raw_text)}
 
+#Function 2: Checking for plagiarism
 @app.post("/check_plagiarism")
 def check_plagiarism(document: DocumentInput):
     raw_text = document.text
     # Here you would typically call your plagiarism checking logic
-    # For demonstration, we will just return a dummy response
-
-
+    
     is_plagiarized = False  # Replace with actual plagiarism checking logic
+
     return {"is_plagiarized": is_plagiarized, "text_length": len(raw_text)}
