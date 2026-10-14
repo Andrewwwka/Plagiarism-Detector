@@ -1,5 +1,6 @@
 from fastapi import FastAPI;
 from pydantic import BaseModel;
+import database
 
 app = FastAPI(title="AI Plagiarism Checker", description="A simple plagariasm checker powered by AI", version="1.0.0")
 
@@ -33,3 +34,5 @@ def check_plagiarism(document: DocumentInput):
     is_plagiarized = False  # Replace with actual plagiarism checking logic
 
     return {"is_plagiarized": is_plagiarized, "text_length": len(raw_text)}
+
+
