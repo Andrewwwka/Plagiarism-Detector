@@ -77,7 +77,7 @@ with col1:
             st.warning("Please provide text to index.")
 
 with col2:
-    st.subheader("🔍 Audit Suspicious Document")
+    st.subheader("Audit Suspicious Document")
     suspicious_text = st.text_area("Paste suspicious text here:", height=270, placeholder="Paste essay or paper to check...")
 
     if st.button("Run Plagiarism Audit", type="primary"):
@@ -91,7 +91,7 @@ with col2:
                     if not matches:
                         st.info("No plagiarism detected above the threshold.")
                     else:
-                        st.error(f"⚠️ Plagiarism Alert! Found {len(matches)} matching segment(s).")
+                        st.error(f"Plagiarism Alert! Found {len(matches)} matching segment(s).")
                         
                         for idx, match in enumerate(matches, 1):
                             with st.container():
